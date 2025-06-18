@@ -18,7 +18,7 @@
 
 var twoSum = function (nums, target) {
     var hashTable = {};
-    for (var i = 0; i < nums.length - 1; i++) {
+    for (var i = 0; i < nums.length; i++) {
         // if exist key 
         if (hashTable[nums[i]]) {
             hashTable[nums[i]].push(i)
@@ -30,12 +30,13 @@ var twoSum = function (nums, target) {
         // for exp: (9-2) = 7
         // but 7 existed in hashtable before => 
         // return result: index of 7 and current index
-        var prev = hashTable[target - nums[i]]
-        if (prev) {
-            return [prev, i]
+        let prev = hashTable[target - nums[i]]
+        if (prev && prev[0] != i) {
+            return [prev[0], i]
         }
     }
     return []
 };
 // @lc code=end
 
+console.log(twoSum([3,2,4], 6));
