@@ -70,7 +70,7 @@
 # Solution: Using hash map to predefine all characters and Stack to manager order of characters
 # if next characters is one of Symmetric character, then pop stack, and double check with that value
 # Time: O(n)
-# Space: O(k), which k belongs ... 
+# Space: O(n) # in worst case only append in stack, not pop
 
 
 # @lc code=start
