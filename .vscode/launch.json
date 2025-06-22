@@ -19,6 +19,13 @@
             "name": "Debug LeetCode JS",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug LeetCode Python",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
         }
     ]
 }
