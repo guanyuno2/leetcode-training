@@ -54,14 +54,36 @@
 # solution using the divide and conquer approach, which is more subtle.
 # 
 #
+# Solution 1: Brute force algorithm
+# We have 2 loops which the second always less than equal then i
+# Time: O(N^2)
+# Space: O(1)
+#
+# Solution 2: using Dynamic Programming
+# Loop each elements and compare between the current value and (previous sum + current value)
+# If the current value is greater, then start new subarray sum here 
+# Time: O(N)
+# Space: O(1)
+
 
 # @lc code=start
 class Solution(object):
     def maxSubArray(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+        temp_sum = max_sum = nums[0] # hold the first index of subarray
+        for i in range(1, len(nums)):
+            temp_sum = max(temp_sum + nums[i], nums[i])
+            max_sum = max(temp_sum, max_sum)
+
+        return max_sum
+    
+
+
+
         
 # @lc code=end
 
+# ✅ Đoạn để debug - viết test case ở đây
+if __name__ == "__main__":
+    sol = Solution()
+    result = sol.maxSubArray([1])
+    print("Result:", result)
