@@ -61,60 +61,29 @@
 # 
 # 
 #
-# Solution 1: brute force
+# Solution 1: 
 # For each
-{
-    97: ['eat', 'tea']
-}
+# Time: O(n * k log k): mỗi chuỗi cần O(k log k) để sort
+#   Duyệt và thao tác dict/list: O(1) trung bình
+# Space: - O(n * k): cần lưu `n` chuỗi (trong dict và kết quả)
+#   O(k): bộ nhớ tạm cho việc sort từng chuỗi
+#   
+
 
 # @lc code=start
 class Solution(object):
-    def getASCII(self, str):
-        result = 0
-        for i in range(0, len(str)):
-            result += ord(str[i])
-        return result
-    
-    def isAnagrams(self, s, t):
-        my_dict = {}
-
-        if(len(t) != len(s)):
-            return False
-
-        for i in range(len(s)):
-            if(my_dict.get(s[i]) is None):
-                my_dict[s[i]] = 1
-            else: 
-                my_dict[s[i]] += 1
-
-        for i in range(len(t)):
-            if(my_dict.get(t[i]) is None):
-                return False
-            else:
-                my_dict[t[i]] -= 1
-
-        for index, value in enumerate(my_dict):
-            if(my_dict[value] != 0):
-                return False
-
-
-        return True
-
     def groupAnagrams(self, strs):
-        hash_table: dict[int, list[str]] = {} 
-        n = len(strs)
-        for i in range(0, n):
-            total_ascii = self.getASCII(strs[i])
-            if(hash_table.get(total_ascii) is None):
-                hash_table[total_ascii] = [strs[i]]
-            elif (self.isAnagrams(hash_table[total_ascii][0], strs[i])): 
-                hash_table[total_ascii].append(strs[i])
+        hash_table = {}
+        for i in range(len(strs)):
+            sorted_string = ''.join(sorted(strs[i]))
+            if(hash_table.get(sorted_string) is None):
+                hash_table[sorted_string] = [strs[i]]
             else:
-                hash_table[total_ascii + i] = [strs[i]] ## alone
-
-        grouped: list[list[str]] = list(hash_table.values())
-        return grouped
-
+                hash_table[sorted_string].append(strs[i])
+        result = []
+        for index, key in enumerate(hash_table):
+            result.append(hash_table[key])
+        return result
 
 
 
@@ -127,5 +96,5 @@ class Solution(object):
 # ✅ Đoạn để debug - viết test case ở đây
 if __name__ == "__main__":
     sol = Solution()
-    result = sol.groupAnagrams(["cab","tin","pew","duh","may","ill","buy","bar","max","doc"])
+    result = sol.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
     print("Result:", result)
