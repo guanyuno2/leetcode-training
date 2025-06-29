@@ -50,8 +50,8 @@
 # -100 <= Node.val <= 100
 # Both list1 and list2 are sorted in non-decreasing order.
 # 
-# 
-#
+# Time: O(n+m)
+# Space: O(1): Không tạo thêm node mới
 
 # @lc code=start
 # Definition for singly-linked list.
